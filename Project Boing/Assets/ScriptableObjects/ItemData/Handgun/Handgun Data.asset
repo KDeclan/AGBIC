@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51d833d9cbe844d4e92ea1af7f2289b9, type: 3}
+  m_Name: Handgun Data
+  m_EditorClassIdentifier: 
+  _name: Handgun
+  _description:
+  - Its a gun...
+  - It could hurt someone...
+  _sprite: {fileID: 1789325512339868136, guid: cbfbe2e116144464db0e79a292bb2bba, type: 3}
