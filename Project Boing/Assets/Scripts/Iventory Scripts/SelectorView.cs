@@ -9,6 +9,8 @@ public class SelectorView : MonoBehaviour
 
     private float lerpSpeed = 25f;
 
+    private GameObject selected;
+
     private void Awake() 
     {
         rectTransform = GetComponent<RectTransform>();
@@ -16,7 +18,11 @@ public class SelectorView : MonoBehaviour
 
     private void Update() 
     {
-        var selected = EventSystem.current.currentSelectedGameObject;
+        var selectedGameObject = EventSystem.current.currentSelectedGameObject;
+
+        selected = (selectedGameObject == null) ? selected : selectedGameObject;
+
+        EventSystem.current.SetSelectedGameObject(selected);
 
         if (selected == null) return;
 
