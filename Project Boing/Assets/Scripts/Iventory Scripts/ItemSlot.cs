@@ -10,17 +10,27 @@ public class ItemSlot : MonoBehaviour, ISelectHandler
 
     private InventoryViewController _viewController;
 
+    private Image _spawnedItemSprite;
+
     public void OnSelect(BaseEventData eventData)
     {
         _viewController.OnSlotSelected(this);
     }
 
-    private void Awake() 
+    private void OnEnable() 
     {
         _viewController = FindObjectOfType<InventoryViewController>();
 
         if(itemData == null) return;
 
-        var spawnedSprite = Instantiate<Image>(itemData.Sprite, transform.position, Quaternion.identity, transform);    
+        _spawnedItemSprite = Instantiate<Image>(itemData.Sprite, transform.position, Quaternion.identity, transform);    
+    }
+
+    private void OnDisable() 
+    {
+        if(_spawnedItemSprite != null)
+        {
+            Destroy(_spawnedItemSprite);
+        }
     }
 }

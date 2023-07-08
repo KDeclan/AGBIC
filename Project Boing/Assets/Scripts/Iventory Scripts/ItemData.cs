@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 public class ItemData : ScriptableObject 
 {
-
+    //contains the item name, decsription and inventory sprite image
+    
     public string Name => _name;
     public List<string> Description => _description;
     public Image Sprite => _sprite;

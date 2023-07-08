@@ -14,20 +14,35 @@ public class CharacterTankController : MonoBehaviour
 
     public bool isControllable = true;
 
+    //referring to being able to move with inventory open
+    public bool canMove;
+
     private void Awake() 
     {
         tankCC = GetComponent<CharacterController>();
     }
 
-    // Start is called before the first frame update
     private void Start()
     {
-        
+        canMove = true;
     }
 
-    // Update is called once per frame
+    private void OnEnable() 
+    {
+        EventBus.Instance.onOpenInventory += () => canMove = true;
+        EventBus.Instance.onCloseInventory += () => canMove = false;
+    }
+
+    private void OnDisable() 
+    {
+        EventBus.Instance.onOpenInventory -= () => canMove = true;
+        EventBus.Instance.onCloseInventory -= () => canMove = false;    
+    }
+
     private void Update()
     {
+        if(!canMove) return;
+
         if (isControllable)
         {
                 //WASD Tank controls
