@@ -12,6 +12,17 @@ public class InventoryViewController : MonoBehaviour
 
     [SerializeField] private List<ItemSlot> _slots;
 
+    [SerializeField] private ScreenFader _fader;
+
+    private enum State
+    {
+        menuClosed,
+
+        menuOpen,
+    };
+
+    private State _state;
+
     private void OnEnable() 
     {
         EventBus.Instance.onPickupItem += OnItemPickedUp;
@@ -56,16 +67,30 @@ public class InventoryViewController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Tab))
         {
-            if(_inventoryViewObject.activeSelf)
+            if(_state == State.menuClosed)
             {
-                EventBus.Instance.OpenInventory();
+                EventBus.Instance.PauseGameplay();
+                _fader.FadeToBlack(0.3f, FadeToMenuCallback); 
+                _state = State.menuOpen;
             }
-            else
+            else if (_state == State.menuOpen)
             {
-                EventBus.Instance.CloseInventory();
+                EventBus.Instance.ResumeGameplay();
+                _fader.FadeToBlack(0.3f, FadeFromMenuCallback);
+                _state = State.menuClosed;
             }
-
-            _inventoryViewObject.SetActive(!_inventoryViewObject.activeSelf);
         }
+   }
+
+   private void FadeToMenuCallback()
+   {
+        _inventoryViewObject.SetActive(true);
+        _fader.FadeFromBlack(0.3f, null);
+   }
+
+   private void FadeFromMenuCallback()
+   {
+        _inventoryViewObject.SetActive(false);
+        _fader.FadeFromBlack(0.3f, null);
    }
 }
