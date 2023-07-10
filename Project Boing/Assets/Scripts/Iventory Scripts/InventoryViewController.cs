@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class InventoryViewController : MonoBehaviour
 {
@@ -9,19 +11,47 @@ public class InventoryViewController : MonoBehaviour
     [SerializeField] private TMP_Text _itemNameText;
 
     [SerializeField] private GameObject _inventoryViewObject;
+    [SerializeField] private GameObject _contextMenuObject;
+    [SerializeField] private GameObject _firstContextMenuOption;
 
     [SerializeField] private List<ItemSlot> _slots;
+    [SerializeField] private ItemSlot _currentSlot;
 
     [SerializeField] private ScreenFader _fader;
+
+    [SerializeField] private List<Button> _contextMenuIgnore;
 
     private enum State
     {
         menuClosed,
 
         menuOpen,
+
+        contextMenu,
     };
 
     private State _state;
+
+    public void UseItem()
+    {
+       EventBus.Instance.UseItem(_currentSlot.itemData);     
+    }
+
+    public void OnSlotSelected(ItemSlot selectedSlot)
+   {
+        //if the inventory slot is empty then dont display any info if not empty display the name and description in the info box
+
+        _currentSlot = selectedSlot;
+        if(selectedSlot.itemData == null)
+        {
+            _itemNameText.ClearMesh();
+            _itemDescriptionText.ClearMesh();
+            return;
+        }
+
+        _itemNameText.SetText(selectedSlot.itemData.Name);
+        _itemDescriptionText.SetText(selectedSlot.itemData.Description[0]);
+   }
 
     private void OnEnable() 
     {
@@ -46,21 +76,6 @@ public class InventoryViewController : MonoBehaviour
         }
     }
 
-   public void OnSlotSelected(ItemSlot selectedSlot)
-   {
-        //if the inventory slot is empty then dont display any info if not empty display the name and description in the info box
-
-        if(selectedSlot.itemData == null)
-        {
-            _itemNameText.ClearMesh();
-            _itemDescriptionText.ClearMesh();
-            return;
-        }
-
-        _itemNameText.SetText(selectedSlot.itemData.Name);
-        _itemDescriptionText.SetText(selectedSlot.itemData.Description[0]);
-   }
-
    private void Update() 
    {
         //Opens and closes inventory using tab
@@ -79,7 +94,52 @@ public class InventoryViewController : MonoBehaviour
                 _fader.FadeToBlack(0.3f, FadeFromMenuCallback);
                 _state = State.menuClosed;
             }
+            else if (_state == State.contextMenu)
+            {
+                _contextMenuObject.SetActive(false);
+                    
+                foreach (var button in _contextMenuIgnore)
+                {
+                    button.interactable = true;
+                }
+                EventSystem.current.SetSelectedGameObject(_currentSlot.gameObject);
+                _state = State.menuOpen;
+            }
         }
+
+        //Open Context Menu
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (_state == State.menuOpen)
+            {
+                if (EventSystem.current.currentSelectedGameObject.TryGetComponent<ItemSlot>(out var slot))
+                {
+                    _state = State.contextMenu;
+                    _contextMenuObject.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(_firstContextMenuOption);
+
+                    foreach (var button in _contextMenuIgnore)
+                    {
+                        button.interactable = false;
+                    }
+                }
+            }
+            
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                if(_state == State.contextMenu)
+                {
+                    _contextMenuObject.SetActive(false);
+
+                    foreach (var button in _contextMenuIgnore)
+                    {
+                        button.interactable = true;
+                    }
+                }
+            }
+        }
+
+
    }
 
    private void FadeToMenuCallback()
