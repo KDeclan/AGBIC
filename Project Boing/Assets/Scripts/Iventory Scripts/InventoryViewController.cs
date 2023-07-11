@@ -34,7 +34,15 @@ public class InventoryViewController : MonoBehaviour
 
     public void UseItem()
     {
-       EventBus.Instance.UseItem(_currentSlot.itemData);     
+        _fader.FadeToBlack(1f, FadeToUseItemCallback);     
+    }
+
+    public void FadeToUseItemCallback()
+    {
+        _contextMenuObject.SetActive(false);
+        _inventoryViewObject.SetActive(false);
+        _fader.FadeFromBlack(1f, () => EventBus.Instance.UseItem(_currentSlot.itemData));
+        _state = State.menuClosed;
     }
 
     public void OnSlotSelected(ItemSlot selectedSlot)
@@ -124,22 +132,7 @@ public class InventoryViewController : MonoBehaviour
                     }
                 }
             }
-            
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
-                if(_state == State.contextMenu)
-                {
-                    _contextMenuObject.SetActive(false);
-
-                    foreach (var button in _contextMenuIgnore)
-                    {
-                        button.interactable = true;
-                    }
-                }
-            }
         }
-
-
    }
 
    private void FadeToMenuCallback()

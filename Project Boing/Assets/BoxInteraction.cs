@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,7 +27,7 @@ public class BoxInteraction : MonoBehaviour
    {
         if (item == _requiredItem)
         {
-            _renderer.material.color = new Color(1,0,0,1);
+               DialoguePrinter.Instance.PrintDialogueLine("You used the key on the cube... the color changed", 0.06f, () => _renderer.material.color = new Color(1,0,0,1));
         }
    }
 }
