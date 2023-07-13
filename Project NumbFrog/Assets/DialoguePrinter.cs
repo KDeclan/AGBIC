@@ -11,6 +11,8 @@ public class DialoguePrinter : MonoBehaviour
     [SerializeField] private TMP_Text _dialogueTextMesh;
     [SerializeField] private GameObject _dialogueTextPanel;
 
+    public bool isWriting;
+
     public void PrintDialogueLine(string lineToPrint, float charSpeed, Action finishedCallback)
     {
        StartCoroutine(CO_PrintDialogueLine(lineToPrint, charSpeed, finishedCallback));
@@ -18,6 +20,8 @@ public class DialoguePrinter : MonoBehaviour
     
     private IEnumerator CO_PrintDialogueLine(string lineToPrint, float charSpeed, Action finishedCallback)
     {
+        isWriting = true;
+
         _dialogueTextMesh.SetText(string.Empty);
 
         for (int i = 0; i< lineToPrint.Length; i++)
@@ -34,6 +38,8 @@ public class DialoguePrinter : MonoBehaviour
 
         finishedCallback?.Invoke();
         EventBus.Instance.ResumeGameplay();
+
+        isWriting = false;
 
         yield return null;
     }

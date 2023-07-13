@@ -1,0 +1,188 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3989048626413659511
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f7b4b43d392da4aa0edc7aa47211ca, type: 3}
+  m_Name: QualityOverrideVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  isPSXQualityEnabled:
+    m_OverrideState: 1
+    m_Value: 1
+--- !u!114 &-1076891196969912067
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bffa9ddd307306479a0e3689eb72441, type: 3}
+  m_Name: PrecisionVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  geometryEnabled:
+    m_OverrideState: 1
+    m_Value: 1
+  geometry:
+    m_OverrideState: 1
+    m_Value: 0.966
+    min: 0
+    max: 1
+  geometryPushbackEnabled:
+    m_OverrideState: 1
+    m_Value: 0
+  geometryPushbackMinMax:
+    m_OverrideState: 1
+    m_Value: {x: 0, y: 1}
+    min: 0
+    max: 10
+  color:
+    m_OverrideState: 1
+    m_Value: 1
+    min: 0
+    max: 1
+  chroma:
+    m_OverrideState: 1
+    m_Value: 0.33333334
+    min: 0
+    max: 1
+  alpha:
+    m_OverrideState: 1
+    m_Value: 1
+    min: 0
+    max: 1
+  affineTextureWarping:
+    m_OverrideState: 1
+    m_Value: 1
+    min: 0
+    max: 1
+  framebufferDither:
+    m_OverrideState: 1
+    m_Value: 1
+    min: 0
+    max: 1
+  ditherSize:
+    m_OverrideState: 1
+    m_Value: 1
+    min: 1
+    max: 8
+  drawDistanceFalloffMode:
+    m_OverrideState: 1
+    m_Value: 0
+  drawDistance:
+    m_OverrideState: 1
+    m_Value: 100
+    min: 0
+--- !u!114 &-621983207465424548
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd3a97acc7ef644da680b9eb611919e, type: 3}
+  m_Name: CathodeRayTubeVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  isEnabled:
+    m_OverrideState: 1
+    m_Value: 1
+  bloom:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  grateMaskMode:
+    m_OverrideState: 1
+    m_Value: 0
+  grateMaskTexture:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+  grateMaskScale:
+    m_OverrideState: 1
+    m_Value: 1
+  scanlineSharpness:
+    m_OverrideState: 1
+    m_Value: 0.206
+    min: 0
+    max: 1
+  imageSharpness:
+    m_OverrideState: 1
+    m_Value: 0.754
+    min: 0
+    max: 1
+  bloomSharpnessX:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  bloomSharpnessY:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  noiseIntensity:
+    m_OverrideState: 1
+    m_Value: 0.009
+    min: 0
+    max: 1
+  noiseSaturation:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  grateMaskIntensityMin:
+    m_OverrideState: 1
+    m_Value: 0.2
+    min: 0
+    max: 1
+  grateMaskIntensityMax:
+    m_OverrideState: 1
+    m_Value: 0.784
+    min: 0
+    max: 1
+  barrelDistortionX:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  barrelDistortionY:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  vignette:
+    m_OverrideState: 1
+    m_Value: 0.5
+    min: 0
+    max: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: Global Volume Profile
+  m_EditorClassIdentifier: 
+  components:
+  - {fileID: -3989048626413659511}
+  - {fileID: -621983207465424548}
+  - {fileID: -1076891196969912067}

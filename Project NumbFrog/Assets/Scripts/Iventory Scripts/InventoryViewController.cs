@@ -15,11 +15,13 @@ public class InventoryViewController : MonoBehaviour
     [SerializeField] private GameObject _firstContextMenuOption;
 
     [SerializeField] private List<ItemSlot> _slots;
-    [SerializeField] private ItemSlot _currentSlot;
+    [SerializeField] public ItemSlot _currentSlot;
 
     [SerializeField] private ScreenFader _fader;
 
     [SerializeField] private List<Button> _contextMenuIgnore;
+
+    public DialoguePrinter dialogueControl;
 
     private enum State
     {
@@ -34,7 +36,22 @@ public class InventoryViewController : MonoBehaviour
 
     public void UseItem()
     {
-        _fader.FadeToBlack(1f, FadeToUseItemCallback);     
+        if (_currentSlot.itemData.Name.Contains("Key"))
+        {
+            _fader.FadeToBlack(1f, FadeToUseItemCallback);
+
+            foreach (var slot in _slots)
+            {
+                if (slot == _currentSlot)
+                {
+                    slot.itemData = null;
+                }
+            }
+        }
+        else
+        {
+            return;
+        }     
     }
 
     public void FadeToUseItemCallback()
@@ -87,11 +104,17 @@ public class InventoryViewController : MonoBehaviour
    private void Update() 
    {
         //Opens and closes inventory using tab
+        if (dialogueControl.isWriting) return;
 
         if(Input.GetKeyDown(KeyCode.Tab))
         {
             if(_state == State.menuClosed)
             {
+                foreach (var button in _contextMenuIgnore)
+                {
+                    button.interactable = true;
+                }
+
                 EventBus.Instance.PauseGameplay();
                 _fader.FadeToBlack(0.3f, FadeToMenuCallback); 
                 _state = State.menuOpen;
