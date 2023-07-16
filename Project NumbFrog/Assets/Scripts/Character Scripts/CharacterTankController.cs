@@ -15,6 +15,7 @@ public class CharacterTankController : MonoBehaviour
     [SerializeField] int gunDamage = 50;
 
     public bool isControllable = true;
+    public bool canTurn = true;
 
     //referring to being able to move with inventory open
     public bool canMove;
@@ -53,25 +54,36 @@ public class CharacterTankController : MonoBehaviour
             {
                 if (anim != null)
                 {
+                    canTurn = false;
                     tankCC.Move(transform.forward * moveSpeed * Time.deltaTime);
+                    anim.SetTrigger("isWalk");
                 }
+            }
+            else
+            {
+                anim.ResetTrigger("isWalk");
+                canTurn = true;
             }
 
             if (Input.GetKey(KeyCode.S))
             {
+                canTurn = false;
                 tankCC.Move(-transform.forward * moveSpeed * Time.deltaTime);
             }
         }
 
-        //*TODO* make only able to turn 90 degrees
-        if (Input.GetKey(KeyCode.A))
-            {
-                transform.Rotate(0, -turnSpeed * Time.deltaTime, 0);
-            }
-
-        if (Input.GetKey(KeyCode.D))
+        if (canTurn)
         {
-            transform.Rotate(0, turnSpeed * Time.deltaTime, 0);
+                //*TODO* make only able to turn 90 degrees
+            if (Input.GetKey(KeyCode.A))
+                {
+                    transform.Rotate(0, -turnSpeed * Time.deltaTime, 0);
+                }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.Rotate(0, turnSpeed * Time.deltaTime, 0);
+            }
         }
 
         //Tank Combat Controls
