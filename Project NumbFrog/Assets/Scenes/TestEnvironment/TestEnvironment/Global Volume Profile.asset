@@ -36,7 +36,7 @@ MonoBehaviour:
     m_Value: 1
   geometry:
     m_OverrideState: 1
-    m_Value: 0.966
+    m_Value: 0.95
     min: 0
     max: 1
   geometryPushbackEnabled:
@@ -103,7 +103,7 @@ MonoBehaviour:
     m_Value: 1
   bloom:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.183
     min: 0
     max: 1
   grateMaskMode:
