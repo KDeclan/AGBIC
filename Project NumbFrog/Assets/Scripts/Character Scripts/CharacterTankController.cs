@@ -6,6 +6,8 @@ public class CharacterTankController : MonoBehaviour
 {
     private CharacterController tankCC;
 
+    private Animator anim;
+
     //Character speed
     [SerializeField] private float moveSpeed;
     [SerializeField] private float turnSpeed;
@@ -20,6 +22,7 @@ public class CharacterTankController : MonoBehaviour
     private void Awake() 
     {
         tankCC = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
     }
 
     private void Start()
@@ -48,7 +51,10 @@ public class CharacterTankController : MonoBehaviour
                 //WASD Tank controls
             if (Input.GetKey(KeyCode.W))
             {
-                tankCC.Move(transform.forward * moveSpeed * Time.deltaTime);
+                if (anim != null)
+                {
+                    tankCC.Move(transform.forward * moveSpeed * Time.deltaTime);
+                }
             }
 
             if (Input.GetKey(KeyCode.S))

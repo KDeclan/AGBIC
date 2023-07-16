@@ -146,7 +146,7 @@ Material:
     - _DoubleSidedConstants: {r: 1, g: 1, b: 1, a: 0}
     - _DrawDistanceOverride: {r: 100, g: 10000, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MainColor: {r: 0.4245283, g: 0.35607904, b: 0.19424173, a: 1}
+    - _MainColor: {r: 0.8867924, g: 0.85859334, b: 0.7905838, a: 1}
     - _PrecisionColorOverrideParameters: {r: 0, g: 0, b: 0, a: 0}
     - _PrecisionGeometryOverrideParameters: {r: 0, g: 0, b: 0, a: 0}
     - _ReflectionColor: {r: 1, g: 1, b: 1, a: 1}
