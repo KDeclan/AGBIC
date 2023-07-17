@@ -56,19 +56,38 @@ public class CharacterTankController : MonoBehaviour
                 {
                     canTurn = false;
                     tankCC.Move(transform.forward * moveSpeed * Time.deltaTime);
+
                     anim.SetTrigger("isWalk");
+                }
+
+                if (Input.GetKey(KeyCode.Space))
+                {
+                    anim.ResetTrigger("isWalk");
+
+                    anim.SetTrigger("isRun");
+                }
+                else
+                {
+                    anim.ResetTrigger("isRun");
                 }
             }
             else
             {
                 anim.ResetTrigger("isWalk");
+                anim.ResetTrigger("isRun");
                 canTurn = true;
             }
 
             if (Input.GetKey(KeyCode.S))
             {
+                anim.SetTrigger("walkback");
+
                 canTurn = false;
                 tankCC.Move(-transform.forward * moveSpeed * Time.deltaTime);
+            }
+            else
+            {
+                anim.ResetTrigger("walkback");
             }
         }
 

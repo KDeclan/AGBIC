@@ -1,5 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8141054495604466344
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad71758d66b75b45a6157133f3e6024, type: 3}
+  m_Name: AccumulationMotionBlurVolume
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  weight:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  vignette:
+    m_OverrideState: 1
+    m_Value: 0
+    min: -1
+    max: 1
+  dither:
+    m_OverrideState: 1
+    m_Value: 1
+    min: 0
+    max: 1
+  zoom:
+    m_OverrideState: 1
+    m_Value: 0
+    min: -1
+    max: 1
+  zoomDither:
+    m_OverrideState: 1
+    m_Value: 0
+    min: 0
+    max: 1
+  anisotropy:
+    m_OverrideState: 1
+    m_Value: 0
+    min: -1
+    max: 1
+  applyToUIOverlay:
+    m_OverrideState: 1
+    m_Value: 0
 --- !u!114 &-3989048626413659511
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -36,7 +83,7 @@ MonoBehaviour:
     m_Value: 1
   geometry:
     m_OverrideState: 1
-    m_Value: 0.9
+    m_Value: 0.95
     min: 0
     max: 1
   geometryPushbackEnabled:
@@ -44,7 +91,7 @@ MonoBehaviour:
     m_Value: 0
   geometryPushbackMinMax:
     m_OverrideState: 1
-    m_Value: {x: 0, y: 1}
+    m_Value: {x: 0, y: 0.9999988}
     min: 0
     max: 10
   color:
@@ -103,7 +150,7 @@ MonoBehaviour:
     m_Value: 1
   bloom:
     m_OverrideState: 1
-    m_Value: 0.85
+    m_Value: 0.502
     min: 0
     max: 1
   grateMaskMode:
@@ -117,7 +164,7 @@ MonoBehaviour:
     m_Value: 1
   scanlineSharpness:
     m_OverrideState: 1
-    m_Value: 0.206
+    m_Value: 0.217
     min: 0
     max: 1
   imageSharpness:
@@ -137,12 +184,12 @@ MonoBehaviour:
     max: 1
   noiseIntensity:
     m_OverrideState: 1
-    m_Value: 0.009
+    m_Value: 0.039
     min: 0
     max: 1
   noiseSaturation:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.03
     min: 0
     max: 1
   grateMaskIntensityMin:
@@ -186,3 +233,4 @@ MonoBehaviour:
   - {fileID: -3989048626413659511}
   - {fileID: -621983207465424548}
   - {fileID: -1076891196969912067}
+  - {fileID: -8141054495604466344}
