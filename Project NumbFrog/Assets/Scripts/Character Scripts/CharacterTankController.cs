@@ -52,16 +52,20 @@ public class CharacterTankController : MonoBehaviour
                 //WASD Tank controls
             if (Input.GetKey(KeyCode.W))
             {
+                anim.ResetTrigger("walkback");
+                anim.ResetTrigger("turnLeft");
+
                 if (anim != null)
                 {
                     canTurn = false;
-                    tankCC.Move(transform.forward * moveSpeed * Time.deltaTime);
+                    tankCC.Move(transform.forward * 1f * Time.deltaTime);
 
                     anim.SetTrigger("isWalk");
                 }
 
                 if (Input.GetKey(KeyCode.Space))
                 {
+                    tankCC.Move(transform.forward * 1.6f * Time.deltaTime);
                     anim.ResetTrigger("isWalk");
 
                     anim.SetTrigger("isRun");
@@ -83,7 +87,7 @@ public class CharacterTankController : MonoBehaviour
                 anim.SetTrigger("walkback");
 
                 canTurn = false;
-                tankCC.Move(-transform.forward * moveSpeed * Time.deltaTime);
+                tankCC.Move(-transform.forward * 0.5f * Time.deltaTime);
             }
             else
             {
@@ -95,19 +99,35 @@ public class CharacterTankController : MonoBehaviour
         {
                 //*TODO* make only able to turn 90 degrees
             if (Input.GetKey(KeyCode.A))
-                {
-                    transform.Rotate(0, -turnSpeed * Time.deltaTime, 0);
-                }
+            {
+                anim.SetTrigger("turnLeft");
+                transform.Rotate(0, -turnSpeed * Time.deltaTime, 0);
+            }
+            else
+            {
+                anim.ResetTrigger("turnLeft");
+            }
 
             if (Input.GetKey(KeyCode.D))
             {
+                anim.SetTrigger("turnRight");
                 transform.Rotate(0, turnSpeed * Time.deltaTime, 0);
+            }
+            else
+            {
+                anim.ResetTrigger("turnRight");
             }
         }
 
         //Tank Combat Controls
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            anim.ResetTrigger("isWalk");
+            anim.ResetTrigger("isRun");
+            anim.ResetTrigger("walkback");
+            anim.ResetTrigger("turnLeft");
+            anim.ResetTrigger("turnRight");
+
             //Prepare to shoot
             //Drastically slow forward and backward movement
             //Minimally slow left and right movement
